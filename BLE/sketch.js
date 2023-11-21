@@ -8,7 +8,7 @@ let connectButton;
 let readyToRead;
 let cBackgroundColor;
 
-function getValue(error, value) {
+function gotValue(error, value) {
   if (error) {
     print("error: ", error);
     return;
@@ -53,6 +53,6 @@ function draw() {
 
   if (readyToRead) {
     readyToRead = false;
-    mBLE.read(mCharacteristic, "string", getValue);
+    mBLE.read(mCharacteristic, "string", gotValue);
   }
 }
