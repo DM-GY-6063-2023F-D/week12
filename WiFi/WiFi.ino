@@ -4,7 +4,7 @@
 
 #include <ArduinoJson.h>
 
-#include "config.h"
+#include "include/config.h"
 
 WebServer server(80);
 
