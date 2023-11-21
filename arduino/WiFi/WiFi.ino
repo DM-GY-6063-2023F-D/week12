@@ -18,7 +18,7 @@ void handleNotFound() {
   server.send(404, "text/plain", message);
 }
 
-void handleA0() {
+void handleData() {
   StaticJsonDocument<64> resJson;
   JsonObject data = resJson.createNestedObject("data");
   data["A0"] = a0Val;
@@ -56,7 +56,7 @@ void setup() {
   }
 
   server.enableCORS();
-  server.on("/A0", handleA0);
+  server.on("/data", handleData);
   server.onNotFound(handleNotFound);
   server.begin();
   Serial.println("HTTP server started");
