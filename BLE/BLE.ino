@@ -30,7 +30,7 @@ void setup() {
   BLEAdvertising *pAdvertising = BLEDevice::getAdvertising();
 
   BLEService *pService = pServer->createService(SERVICE_UUID.c_str());
-  pCharacteristic = pService->createCharacteristic(CHARACTERISTIC_UUID.c_str(), BLECharacteristic::PROPERTY_READ);
+  pCharacteristic = pService->createCharacteristic(CHARACTERISTIC_UUID.c_str(), BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE);
 
   pService->start();
   pAdvertising->addServiceUUID(SERVICE_UUID.c_str());
