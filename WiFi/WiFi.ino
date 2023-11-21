@@ -31,28 +31,25 @@ void handleData() {
 
 void setup() {
   Serial.begin(9600);
-  delay(10);
-  Serial.print(F("Connecting to network: "));
-  Serial.println(ssid);
+  while (!Serial) {}
+
   WiFi.disconnect(true);
   WiFi.mode(WIFI_STA);
+  WiFi.begin(SSID, SSID_PASSWORD);
 
-  WiFi.begin(ssid, ssid_password);
-
-  int trycount = 0;
-  while (WiFi.status() != WL_CONNECTED && trycount < 60) {
+  int tryConnectCount = 0;
+  while (WiFi.status() != WL_CONNECTED && tryConnectCount < 60) {
     delay(500);
-    Serial.print(F("."));
-    trycount++;
+    Serial.print(".");
+    tryConnectCount++;
   }
-
   Serial.println("");
+
   if (WiFi.status() == WL_CONNECTED) {
-    Serial.println(F("WiFi is connected!"));
-    Serial.println(F("IP address set: "));
+    Serial.println("IP address: ");
     Serial.println(WiFi.localIP());
   } else {
-    Serial.println(F("WiFi is NOT connected! 💩"));
+    Serial.println("WiFi is NOT connected! 💩");
   }
 
   server.enableCORS();
@@ -64,6 +61,7 @@ void setup() {
 
 void loop() {
   a0Val = analogRead(A0);
+
   server.handleClient();
   delay(2);
 }

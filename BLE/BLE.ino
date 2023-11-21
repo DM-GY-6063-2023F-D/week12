@@ -7,10 +7,12 @@ String SERVICE_UUID("250b0d00-1b4f-4f16-9171-f63c733d15ab");
 
 EasyBLE mBLE;
 
+int a0Val;
+
 void updateData() {
   StaticJsonDocument<64> resJson;
   JsonObject data = resJson.createNestedObject("data");
-  data["A0"] = analogRead(A0);
+  data["A0"] = a0Val;
 
   String resTxt = "";
   serializeJson(resJson, resTxt);
@@ -25,6 +27,8 @@ void setup() {
 }
 
 void loop() {
+  a0Val = analogRead(A0);
+
   updateData();
-  delay(1);
+  delay(2);
 }

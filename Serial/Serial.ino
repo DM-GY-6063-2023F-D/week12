@@ -14,6 +14,7 @@ void sendData() {
 
 void setup() {
   Serial.begin(9600);
+  while (!Serial) {}
 }
 
 void loop() {
@@ -27,5 +28,5 @@ void loop() {
     }
   }
 
-  delay(4);
+  delay(2);
 }

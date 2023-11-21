@@ -1,3 +1,3 @@
-String ssid("SSID");
-String ssid_password("PASSWORD");
-String ssid_user("USER");
+String SSID("SSID");
+String SSID_PASSWORD("PASSWORD");
+String SSID_USER("USER");
