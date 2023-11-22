@@ -1,14 +1,21 @@
 #include <ArduinoJson.h>
 
-int a0Val;
+int a0Val = 0;
+int a0Min = 5000;
+int a0Max = 0;
 
 void sendData() {
   StaticJsonDocument<64> resJson;
   JsonObject data = resJson.createNestedObject("data");
-  data["A0"] = a0Val;
+  JsonObject A0 = data.createNestedObject("A0");
+
+  A0["val"] = a0Val;
+  A0["min"] = a0Min;
+  A0["max"] = a0Max;
 
   String resTxt = "";
   serializeJson(resJson, resTxt);
+
   Serial.println(resTxt);
 }
 
@@ -19,6 +26,8 @@ void setup() {
 
 void loop() {
   a0Val = analogRead(A0);
+  a0Min = min(a0Min, a0Val);
+  a0Max = max(a0Max, a0Val);
 
   if (Serial.available() > 0) {
     int byteIn = Serial.read();

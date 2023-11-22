@@ -15,9 +15,9 @@ function gotValue(error, value) {
   }
 
   let data = JSON.parse(value).data;
-  let a0Val = data.A0;
+  let a0 = data.A0;
 
-  cBackgroundColor = map(a0Val, 0, 4095, 0, 255);
+  cBackgroundColor = map(a0.value, a0.min, a0.max, 0, 255);
   readyToRead = true;
 }
 
