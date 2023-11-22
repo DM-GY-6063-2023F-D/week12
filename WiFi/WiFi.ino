@@ -13,11 +13,7 @@ int a0Min = 5000;
 int a0Max = 0;
 
 void handleNotFound() {
-  String message = "";
-  message += "404!\n";
-  message += server.uri();
-  message += " NOT FOUND\n\n";
-  server.send(404, "text/plain", message);
+  server.send(404, "text/plain", "404! ADDRESS NOT FOUND");
 }
 
 void handleData() {
@@ -62,7 +58,6 @@ void setup() {
   server.on("/data", handleData);
   server.onNotFound(handleNotFound);
   server.begin();
-  Serial.println("HTTP server started");
 }
 
 void loop() {
