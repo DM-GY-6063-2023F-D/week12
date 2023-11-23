@@ -9,8 +9,9 @@ let readyToRead;
 let cBackgroundColor;
 
 function gotValue(error, value) {
-  if (error) {
-    print("error: ", error);
+  if (error || value.charAt(0) != "{") {
+    print("error: ", error || value);
+    readyToRead = true;
     return;
   }
 

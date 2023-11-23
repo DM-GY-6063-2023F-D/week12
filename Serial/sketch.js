@@ -3,11 +3,17 @@ let readyToReceive;
 let cBackgroundColor;
 
 function serialEvent() {
-  let currentString = mSerial.readLine();
-  trim(currentString);
-  if (!currentString) return;
+  let line = mSerial.readLine();
+  trim(line);
+  if (!line) return;
 
-  let data = JSON.parse(currentString).data;
+  if (line.charAt(0) != "{") {
+    print("error: ", line);
+    readyToReceive = true;
+    return;
+  }
+
+  let data = JSON.parse(line).data;
   let a0 = data.A0;
 
   cBackgroundColor = map(a0.value, a0.min, a0.max, 0, 255);

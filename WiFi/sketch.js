@@ -20,6 +20,6 @@ function draw() {
 
   if (readyToLoad) {
     readyToLoad = false;
-    loadJSON("http://10.10.81.101/data", parseData);
+    loadJSON("http://192.168.1.239/data", parseData);
   }
 }
