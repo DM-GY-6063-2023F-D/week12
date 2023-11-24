@@ -1,3 +1,5 @@
+let SERVER_ADDRESS = "http://192.168.1.239/data";
+
 let readyToLoad;
 let cBackgroundColor;
 
@@ -20,6 +22,6 @@ function draw() {
 
   if (readyToLoad) {
     readyToLoad = false;
-    loadJSON("http://192.168.1.239/data", parseData);
+    loadJSON(SERVER_ADDRESS, parseData);
   }
 }
