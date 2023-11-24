@@ -1,11 +1,14 @@
 let SERIAL_PORT = "/dev/cu.usbmodem3485187B80BC2";
 
 let mSerial;
+
+let connectButton;
+
 let readyToReceive;
 let cBackgroundColor;
 
-function serialEvent() {
-  let line = mSerial.readLine();
+function receiveSerial() {
+  let line = mSerial.readUntil("\n");
   trim(line);
   if (!line) return;
 
@@ -22,30 +25,38 @@ function serialEvent() {
   readyToReceive = true;
 }
 
-function serialError(err) {
-  print("Something went wrong with the serial port", err);
+function connectToSerial() {
+  if (!mSerial.opened()) {
+    mSerial.open(9600);
+
+    readyToReceive = true;
+    connectButton.hide();
+  }
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
   cBackgroundColor = 0;
+  readyToReceive = false;
 
-  mSerial = new p5.SerialPort();
+  mSerial = createSerial();
 
-  mSerial.on("data", serialEvent);
-  mSerial.on("error", serialError);
-
-  mSerial.openPort(SERIAL_PORT, { baudRate: 9600 });
-  mSerial.clear();
-  readyToReceive = true;
+  connectButton = createButton("Connect To Serial");
+  connectButton.position(width / 2, height / 2);
+  connectButton.mousePressed(connectToSerial);
 }
 
 function draw() {
   background(cBackgroundColor);
 
-  if (readyToReceive) {
-    mSerial.clear();
-    mSerial.write(0xAB);
+  if (mSerial.opened() && readyToReceive) {
     readyToReceive = false;
+    mSerial.clear();
+    mSerial.write(0xab);
+  }
+
+  if (mSerial.availableBytes() > 0) {
+    receiveSerial();
   }
 }

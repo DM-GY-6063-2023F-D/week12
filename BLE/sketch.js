@@ -44,6 +44,7 @@ function setup() {
   readyToRead = false;
 
   mBLE = new p5ble();
+
   connectButton = createButton("Connect To BLE");
   connectButton.position(width / 2, height / 2);
   connectButton.mousePressed(connectToBle);
