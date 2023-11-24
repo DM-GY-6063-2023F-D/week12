@@ -21,7 +21,7 @@ Open a serial connection between the Arduino and the [p5.serialserver](https://g
 
 The p5js sketch uses the [p5.serialport](https://github.com/p5-serial/p5.serialport) library to open a [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) connection to the same app.
 
-![](./imgs/wk12-02_serial-02.jpg)
+![](./imgs/wk12-02_serial-03.jpg)
 
 ## WiFi
 The Arduino starts a simple HTTP server that the p5js sketch can make [GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) requests to.
