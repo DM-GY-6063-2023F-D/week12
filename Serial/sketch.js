@@ -1,3 +1,5 @@
+let SERIAL_PORT = "/dev/cu.usbmodem3485187B80BC2";
+
 let mSerial;
 let readyToReceive;
 let cBackgroundColor;
@@ -33,7 +35,7 @@ function setup() {
   mSerial.on("data", serialEvent);
   mSerial.on("error", serialError);
 
-  mSerial.openPort("/dev/cu.usbmodem3485187B80BC2", { baudRate: 9600 });
+  mSerial.openPort(SERIAL_PORT, { baudRate: 9600 });
   mSerial.clear();
   readyToReceive = true;
 }
