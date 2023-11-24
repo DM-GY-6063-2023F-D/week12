@@ -17,9 +17,7 @@ Implementation of a low-pass filter by averaging current and previous values of 
 ![](./imgs/wk12-01_avg-01.jpg)
 
 ## Serial
-Open a serial connection between the Arduino and the [p5.serialserver](https://github.com/p5-serial/p5.serialserver) app running on the local computer.
-
-The p5js sketch uses the [p5.serialport](https://github.com/p5-serial/p5.serialport) library to open a [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) connection to the same app.
+Open a serial connection between the browser and the Arduino using the [p5.webserial](https://github.com/gohai/p5.webserial) library.
 
 ![](./imgs/wk12-02_serial-03.jpg)
 
