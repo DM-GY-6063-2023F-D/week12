@@ -1,5 +1,3 @@
-let SERIAL_PORT = "/dev/cu.usbmodem3485187B80BC2";
-
 let mSerial;
 
 let connectButton;
